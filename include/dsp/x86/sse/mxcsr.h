@@ -12,6 +12,26 @@
     #error "This heades should not be included directly"
 #endif /* X86_SSE_IMPL */
 
+#define MXCSR_IE                    (1 << 0)
+#define MXCSR_DE                    (1 << 1)
+#define MXCSR_ZE                    (1 << 2)
+#define MXCSR_OE                    (1 << 3)
+#define MXCSR_UE                    (1 << 4)
+#define MXCSR_PE                    (1 << 5)
+#define MXCSR_DAZ                   (1 << 6) /* Denormals are zeros flag */
+#define MXCSR_IM                    (1 << 7)
+#define MXCSR_DM                    (1 << 8)
+#define MXCSR_ZM                    (1 << 9)
+#define MXCSR_OM                    (1 << 10)
+#define MXCSR_UM                    (1 << 11)
+#define MXCSR_PM                    (1 << 12)
+#define MXCSR_RC_MASK               (3 << 13)
+#define MXCSR_RC_NEAREST            (0 << 13)
+#define MXCSR_RC_N_INF              (1 << 13)
+#define MXCSR_RC_P_INF              (2 << 13)
+#define MXCSR_RC_ZERO               (3 << 13)
+#define MXCSR_FZ                    (1 << 15) /* Flush to zero flag */
+
 static uint32_t mxcsr_mask;
 
 inline void init_mxcsr_mask()
@@ -31,9 +51,9 @@ inline void init_mxcsr_mask()
 
         // Get mask
         __ASM_EMIT("mov     0x1c(%[fxsave]), %%eax")
-        __ASM_EMIT("test    %%eax, %%eax")
+        __ASM_EMIT("test    %%eax, %%eax") // Old processors issue zero MXCSR mask
         __ASM_EMIT("jnz     1f")
-        __ASM_EMIT("mov     $0xffbf, %%eax") // Old processors issue zero MXCSR mask
+        __ASM_EMIT("mov     $0xffbf, %%eax")
         __ASM_EMIT("1:")
 
         // Store MXCSR mask

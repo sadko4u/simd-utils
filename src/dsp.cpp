@@ -25,7 +25,9 @@ namespace dsp
 namespace dsp
 {
     // Function prototypes
-    void (* example_function)()     = NULL;
+    void (* example_function)()             = NULL;
+    void (* start)(context_t *ctx)          = NULL;
+    void (* finish)(context_t *ctx)         = NULL;
 
     // Initialization
     void init()

@@ -223,9 +223,13 @@ namespace dsp
             cpuid(&info, 0, 0);
 
             // Detect vendor
-            if ((info.ebx == X86_CPUID0_INTEL_EBX) && (info.ecx == X86_CPUID0_INTEL_ECX) && (info.edx == X86_CPUID0_INTEL_EDX))
+            if ((info.ebx == X86_CPUID0_INTEL_EBX) &&
+                (info.ecx == X86_CPUID0_INTEL_ECX) &&
+                (info.edx == X86_CPUID0_INTEL_EDX))
                 f->vendor   = CPU_VENDOR_INTEL;
-            else if ((info.ebx == X86_CPUID0_AMD_EBX) && (info.ecx == X86_CPUID0_AMD_ECX) && (info.edx == X86_CPUID0_AMD_EDX))
+            else if ((info.ebx == X86_CPUID0_AMD_EBX) &&
+                     (info.ecx == X86_CPUID0_AMD_ECX) &&
+                     (info.edx == X86_CPUID0_AMD_EDX))
                 f->vendor   = CPU_VENDOR_AMD;
 
             size_t max_cpuid    = info.eax;
@@ -254,7 +258,7 @@ namespace dsp
 
         void init()
         {
-            // Dectect CPU options
+            // Detect CPU options
             cpu_features_t f;
             detect_options(&f);
 

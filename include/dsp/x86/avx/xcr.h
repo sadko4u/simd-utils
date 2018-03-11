@@ -13,7 +13,7 @@
 #endif /* DSP_X86_AVX_IMPL */
 
 #ifdef __AVX__
-    uint64_t read_xcr(umword_t xcr)
+    uint64_t read_xcr(umword_t xcr_id)
     {
         uint64_t xcr;
 

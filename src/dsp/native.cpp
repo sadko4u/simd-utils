@@ -24,9 +24,20 @@ namespace dsp
 {
     namespace native
     {
+        void start(context_t *ctx)
+        {
+            ctx->top        = 0;
+        }
+
+        void finish(context_t *ctx)
+        {
+        }
+
         void init()
         {
             printf("Initializing native DSP functions\n");
+            dsp::start                  = native::start;
+            dsp::finish                 = native::finish;
             dsp::example_function       = native::example_function;
         }
     }
