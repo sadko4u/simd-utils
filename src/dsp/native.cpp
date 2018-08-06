@@ -7,6 +7,7 @@
 
 #include <dsp.h>
 #include <stdio.h>
+#include <string.h>
 
 #define DSP_NATIVE_IMPL
 
@@ -15,6 +16,7 @@ namespace dsp
     namespace native
     {
         #include <dsp/native/example.h>
+        #include <dsp/native/copy.h>
     }
 }
 
@@ -39,6 +41,12 @@ namespace dsp
             dsp::start                  = native::start;
             dsp::finish                 = native::finish;
             dsp::example_function       = native::example_function;
+            
+            // DSP data copy routines
+            dsp::copyf                  = native::copyf;
+            dsp::copyd                  = native::copyd;
+            dsp::movef                  = native::movef;
+            dsp::moved                  = native::moved;
         }
     }
 }

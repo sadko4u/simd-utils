@@ -28,6 +28,13 @@ namespace dsp
     void (* example_function)()             = NULL;
     void (* start)(context_t *ctx)          = NULL;
     void (* finish)(context_t *ctx)         = NULL;
+    
+    // Data copying
+    void (* copyf)(float *dst, const float *src, size_t n) = NULL;
+    void (* copyd)(double *dst, const double *src, size_t n) = NULL;
+
+    void (* movef)(float *dst, const float *src, size_t n) = NULL;
+    void (* moved)(double *dst, const double *src, size_t n) = NULL;
 
     // Initialization
     void init()
